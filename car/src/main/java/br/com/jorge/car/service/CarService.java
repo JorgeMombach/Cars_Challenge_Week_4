@@ -14,21 +14,50 @@ public class CarService {
     @Autowired
     CarRepository carRepository;
 
-    public String getString() {
-        return "Dentro do Service";
-    }
-
     public void save(CarDtoRequest carDtoRequest) {
 
-        Car car = new Car(
-                null,
-                carDtoRequest.getName(),
-                carDtoRequest.getBrand(),
-                carDtoRequest.getColor(),
-                carDtoRequest.getFabricationYear());
+        if(carDtoRequest.getBrand().equalsIgnoreCase("Ford")){
+            Car car = new Car(
+                    null,
+                    carDtoRequest.getName(),
+                    carDtoRequest.getBrand(),
+                    carDtoRequest.getColor(),
+                    carDtoRequest.getFabricationYear());
 
-        carRepository.save(car);
+            carRepository.save(car);
+        } else if (carDtoRequest.getBrand().equalsIgnoreCase("Chevrolet")) {
+            Car car = new Car(
+                    null,
+                    carDtoRequest.getName(),
+                    carDtoRequest.getBrand(),
+                    carDtoRequest.getColor(),
+                    carDtoRequest.getFabricationYear());
+
+            carRepository.save(car);
+        } else if (carDtoRequest.getBrand().equalsIgnoreCase("BMW")) {
+            Car car = new Car(
+                    null,
+                    carDtoRequest.getName(),
+                    carDtoRequest.getBrand(),
+                    carDtoRequest.getColor(),
+                    carDtoRequest.getFabricationYear());
+
+            carRepository.save(car);
+        } else if (carDtoRequest.getBrand().equalsIgnoreCase("Volvo")) {
+            Car car = new Car(
+                    null,
+                    carDtoRequest.getName(),
+                    carDtoRequest.getBrand(),
+                    carDtoRequest.getColor(),
+                    carDtoRequest.getFabricationYear());
+
+            carRepository.save(car);
+        } else{
+        }
+
+
     }
+
 
     //Improve this!!
     public CarDtoResponse getByIdChassi(Long idChassi) {
