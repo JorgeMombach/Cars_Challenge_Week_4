@@ -1,6 +1,7 @@
 package br.com.jorge.car.service;
 
 import br.com.jorge.car.dto.CarDtoRequest;
+import br.com.jorge.car.dto.CarDtoResponse;
 import br.com.jorge.car.entity.Car;
 import br.com.jorge.car.exception.CarNotFoundException;
 import br.com.jorge.car.repository.CarRepository;
@@ -17,7 +18,7 @@ public class CarService {
         return "Dentro do Service";
     }
 
-    public Car save(CarDtoRequest carDtoRequest) {
+    public void save(CarDtoRequest carDtoRequest) {
 
         Car car = new Car(
                 null,
@@ -27,12 +28,19 @@ public class CarService {
                 carDtoRequest.getFabricationYear());
 
         carRepository.save(car);
-        return car;
     }
 
     //Improve this!!
-    public Car getByIdChassi(Long idChassi) {
-        return carRepository.findById(idChassi).orElseThrow(() -> new CarNotFoundException("Car not found"));
+    public CarDtoResponse getByIdChassi(Long idChassi) {
+        Car car = carRepository.findById(idChassi).orElseThrow(() -> new CarNotFoundException("Car not found"));
+        CarDtoResponse carDtoResponse = new CarDtoResponse(
+                car.getIdChassi(),
+                car.getName(),
+                car.getBrand(),
+                car.getColor(),
+                car.getFabricationYear()
+                );
+        return carDtoResponse;
     }
 }
 
