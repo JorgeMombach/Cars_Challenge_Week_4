@@ -14,9 +14,14 @@ public class CarService {
     @Autowired
     CarRepository carRepository;
 
-    public void save(CarDtoRequest carDtoRequest) {
+    public String save(CarDtoRequest carDtoRequest) {
 
-        if(carDtoRequest.getBrand().equalsIgnoreCase("Ford")){
+        String brand = carDtoRequest.getBrand().toLowerCase();
+
+        if (brand.equalsIgnoreCase("ford")
+                || brand.equalsIgnoreCase("chevrolet")
+                || brand.equalsIgnoreCase("bmw")
+                || brand.equalsIgnoreCase("volvo")) {
             Car car = new Car(
                     null,
                     carDtoRequest.getName(),
@@ -25,37 +30,10 @@ public class CarService {
                     carDtoRequest.getFabricationYear());
 
             carRepository.save(car);
-        } else if (carDtoRequest.getBrand().equalsIgnoreCase("Chevrolet")) {
-            Car car = new Car(
-                    null,
-                    carDtoRequest.getName(),
-                    carDtoRequest.getBrand(),
-                    carDtoRequest.getColor(),
-                    carDtoRequest.getFabricationYear());
-
-            carRepository.save(car);
-        } else if (carDtoRequest.getBrand().equalsIgnoreCase("BMW")) {
-            Car car = new Car(
-                    null,
-                    carDtoRequest.getName(),
-                    carDtoRequest.getBrand(),
-                    carDtoRequest.getColor(),
-                    carDtoRequest.getFabricationYear());
-
-            carRepository.save(car);
-        } else if (carDtoRequest.getBrand().equalsIgnoreCase("Volvo")) {
-            Car car = new Car(
-                    null,
-                    carDtoRequest.getName(),
-                    carDtoRequest.getBrand(),
-                    carDtoRequest.getColor(),
-                    carDtoRequest.getFabricationYear());
-
-            carRepository.save(car);
-        } else{
+            return "Car successfully added!";
+        } else {
+            return "Invalid brand!";
         }
-
-
     }
 
 

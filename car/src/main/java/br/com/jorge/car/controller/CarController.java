@@ -16,8 +16,7 @@ public class CarController {
 
     @PostMapping("/post")
     public String post(@RequestBody CarDtoRequest carDtoRequest){
-        carService.save(carDtoRequest);
-        return "Car successfully added!";
+        return carService.save(carDtoRequest);
     }
 
     @GetMapping("/get/{idChassi}")
