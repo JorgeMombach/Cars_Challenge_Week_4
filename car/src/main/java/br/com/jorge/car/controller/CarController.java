@@ -1,5 +1,6 @@
 package br.com.jorge.car.controller;
 
+import br.com.jorge.car.dto.CarDtoRequest;
 import br.com.jorge.car.entity.Car;
 import br.com.jorge.car.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,12 @@ public class CarController {
     CarService carService;
 
     @PostMapping("/post")
-    public Car post(@RequestBody Car car){
-        return carService.save(car);
+    public Car post(@RequestBody CarDtoRequest carDtoRequest){
+        return carService.save(carDtoRequest);
     }
 
     @GetMapping("/get/{idChassi}")
-    public Car post(@PathVariable Long idChassi){
+    public Car get(@PathVariable Long idChassi){
         return carService.getByIdChassi(idChassi);
     }
 

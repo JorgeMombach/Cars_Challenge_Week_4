@@ -25,6 +25,13 @@ public class Car {
         this.fabricationYear = fabricationYear;
     }
 
+    public Car(String name, String brand, String color, String fabricationYear) {
+        this.name = name;
+        this.brand = brand;
+        this.color = color;
+        this.fabricationYear = fabricationYear;
+    }
+
     public Long getIdChassi() {
         return idChassi;
     }
