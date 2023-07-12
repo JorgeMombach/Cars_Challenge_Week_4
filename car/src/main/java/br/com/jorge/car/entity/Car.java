@@ -7,16 +7,7 @@ import javax.persistence.*;
 public class Car {
 
     @Id
-    @SequenceGenerator(
-            name = "car_sequence",
-            sequenceName = "car_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "car_sequence"
-    )
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idChassi;
     private String name;
     private String brand;

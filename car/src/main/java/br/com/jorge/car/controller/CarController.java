@@ -18,8 +18,13 @@ public class CarController {
     }
 
     @PostMapping("/post")
-    public String post(@RequestBody Car car){
-        return car.toString();
+    public Car post(@RequestBody Car car){
+        return carService.save(car);
+    }
+
+    @GetMapping("/get/{idChassi}")
+    public Car post(@PathVariable Long idChassi){
+        return carService.getByIdChassi(idChassi);
     }
 
 }
