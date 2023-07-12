@@ -12,11 +12,6 @@ public class CarController {
     @Autowired
     CarService carService;
 
-    @GetMapping("/get")
-    public String get(){
-        return carService.getString();
-    }
-
     @PostMapping("/post")
     public Car post(@RequestBody Car car){
         return carService.save(car);
