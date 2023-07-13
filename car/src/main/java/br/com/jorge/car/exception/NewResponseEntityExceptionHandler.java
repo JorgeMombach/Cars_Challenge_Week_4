@@ -21,4 +21,23 @@ public class NewResponseEntityExceptionHandler extends ResponseEntityExceptionHa
         return new ResponseEntity<>(errorDetails, status);
     }
 
+    @ExceptionHandler(InvalidBrandException.class)
+    public ResponseEntity<Object> handleInvalidBrandException(InvalidBrandException ex, WebRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        String error = "Invalid brand! Only Ford, Chevrolet, BMW and Volvo are allowed.";
+        String path = request.getDescription(false);
+
+        ErrorDetails errorDetails = new ErrorDetails(status.value(), error, path);
+        return new ResponseEntity<>(errorDetails, status);
+    }
+
+    @ExceptionHandler(MissingFieldsException.class)
+    public ResponseEntity<Object> handleMissingFieldsException(MissingFieldsException ex, WebRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        String error = "All fields are required in order to add a car. Please insert data again.";
+        String path = request.getDescription(false);
+
+        ErrorDetails errorDetails = new ErrorDetails(status.value(), error, path);
+        return new ResponseEntity<>(errorDetails, status);
+    }
 }
