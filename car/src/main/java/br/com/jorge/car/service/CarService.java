@@ -4,6 +4,8 @@ import br.com.jorge.car.dto.CarDtoRequest;
 import br.com.jorge.car.dto.CarDtoResponse;
 import br.com.jorge.car.entity.Car;
 import br.com.jorge.car.exception.CarNotFoundException;
+import br.com.jorge.car.exception.InvalidBrandException;
+import br.com.jorge.car.exception.MissingFieldsException;
 import br.com.jorge.car.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +16,7 @@ public class CarService {
     @Autowired
     CarRepository carRepository;
 
-    public String save(CarDtoRequest carDtoRequest) {
+    public String save(CarDtoRequest carDtoRequest) throws InvalidBrandException, MissingFieldsException {
 
         String carBrand = carDtoRequest.getBrand().toLowerCase();
         String carName = carDtoRequest.getName();
@@ -37,10 +39,10 @@ public class CarService {
                 carRepository.save(car);
                 return "Car successfully added!";
             } else{
-                return "All fields are required in order to add a car. Please insert data again.";
+                throw new MissingFieldsException("All fields are required in order to add a car. Please insert data again.");
             }
         } else {
-            return "Invalid brand! Only Ford, Chevrolet, BMW and Volvo are allowed.";
+            throw new InvalidBrandException("Invalid brand! Only Ford, Chevrolet, BMW and Volvo are allowed.");
         }
     }
 
