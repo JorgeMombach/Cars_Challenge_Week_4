@@ -14,7 +14,7 @@ public class NewResponseEntityExceptionHandler extends ResponseEntityExceptionHa
     @ExceptionHandler(CarNotFoundException.class)
     public ResponseEntity<Object> handleCarNotFoundException(CarNotFoundException ex, WebRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
-        String error = "Car not found";
+        String error = "Car not found. Please try a valid iD.";
         String path = request.getDescription(false);
 
         ErrorDetails errorDetails = new ErrorDetails(status.value(), error, path);

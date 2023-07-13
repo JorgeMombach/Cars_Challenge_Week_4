@@ -16,30 +16,41 @@ public class CarService {
 
     public String save(CarDtoRequest carDtoRequest) {
 
-        String brand = carDtoRequest.getBrand().toLowerCase();
+        String carBrand = carDtoRequest.getBrand().toLowerCase();
+        String carName = carDtoRequest.getName();
+        String carColor = carDtoRequest.getColor();
+        String carFabricationYear = carDtoRequest.getFabricationYear();
 
-        if (brand.equalsIgnoreCase("ford")
-                || brand.equalsIgnoreCase("chevrolet")
-                || brand.equalsIgnoreCase("bmw")
-                || brand.equalsIgnoreCase("volvo")) {
-            Car car = new Car(
-                    null,
-                    carDtoRequest.getName(),
-                    carDtoRequest.getBrand(),
-                    carDtoRequest.getColor(),
-                    carDtoRequest.getFabricationYear());
+        if (carBrand.equalsIgnoreCase("ford")
+                || carBrand.equalsIgnoreCase("chevrolet")
+                || carBrand.equalsIgnoreCase("bmw")
+                || carBrand.equalsIgnoreCase("volvo")) {
 
-            carRepository.save(car);
-            return "Car successfully added!";
+            if (isNotBlank(carName) && isNotBlank(carColor) && isNotBlank(carFabricationYear)){
+                Car car = new Car(
+                        null,
+                        carDtoRequest.getName(),
+                        carDtoRequest.getBrand(),
+                        carDtoRequest.getColor(),
+                        carDtoRequest.getFabricationYear());
+
+                carRepository.save(car);
+                return "Car successfully added!";
+            } else{
+                return "All fields are required in order to add a car. Please insert data again.";
+            }
         } else {
-            return "Invalid brand!";
+            return "Invalid brand! Only Ford, Chevrolet, BMW and Volvo are allowed.";
         }
     }
 
+    private boolean isNotBlank(String value){
+        return value != null && !value.trim().isEmpty();
+    }
 
     //Improve this!!
     public CarDtoResponse getByIdChassi(Long idChassi) {
-        Car car = carRepository.findById(idChassi).orElseThrow(() -> new CarNotFoundException("Car not found"));
+        Car car = carRepository.findById(idChassi).orElseThrow(() -> new CarNotFoundException("Car not found. Please try a valid iD."));
         CarDtoResponse carDtoResponse = new CarDtoResponse(
                 car.getIdChassi(),
                 car.getName(),
