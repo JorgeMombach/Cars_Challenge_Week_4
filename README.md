@@ -1,14 +1,14 @@
 # Cars_Challenge_Week_4
 This project was developed by Jorge Mombach for the week 4' challenge.
 
-It consists on the creation of 2 endpoints. One GET and one POST for a table called car_tb.
+It consists on the creation of 2 endpoints -> one GET and one POST, using a table called car_tb in the MySQL databse.
 
 ## 1. POST RESQUEST
-When a POST request is made using Postman or even the IDE it should be done like this:
+When a POST request is made using Postman or even the IDE it should look like this:
 
 path = localhost:8080/cars/post
 
- Using the following JSON examplein the body:
+ Using the following JSON example in the body:
 
  ```json
 {
@@ -19,7 +19,7 @@ path = localhost:8080/cars/post
 }
  ```
 
-For this example the resulted return shoukd look like this:
+For this example the resulted return should look like this:
 
 "Car successfully added!"
 
@@ -28,7 +28,7 @@ Only 4 brands are allowed to be posted -> Ford, Chevrolet, BMW and Volvo (they c
 Other brands won't be accepted making not possible to add a new car.
 
 ## 2. GET REQUEST
-When a GET request is made it should be done like this:
+When a GET request is made it should look like this:
 
 path = localhost:8080/cars/get/{idChassi}
 
