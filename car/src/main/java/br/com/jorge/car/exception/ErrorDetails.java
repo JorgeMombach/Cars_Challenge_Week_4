@@ -1,4 +1,4 @@
-package br.com.jorge.car.entity;
+package br.com.jorge.car.exception;
 
 public class ErrorDetails {
     private int status;
